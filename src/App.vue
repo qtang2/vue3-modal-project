@@ -2,16 +2,23 @@
   <h1>{{title}}</h1>
   <p>Welcome</p>
   <div v-if="showModal">
-    <Modal :header="header" v-bind:text="text" theme="" @close ="toggleModal"  >
+    <Modal  theme="" @close ="toggleModal"  >
       <template v-slot:links>
         <a href="#">Sign up</a>
         <a href="#">More info</a>
       </template>
-      <h1>Ninja Giveaway</h1>
-      <p>Grab your ninja swag for half price</p>
+      <h1>Sign up </h1>
+      <p>Grab the code to get half price</p>
+    </Modal>
+  </div>
+  <div v-if="showModalTwo">
+    <Modal  @close="toggleModalTwo">
+      <h1>Successfully logged in</h1>
+      <p>Now you can explore the website</p>
     </Modal>
   </div>
   <button v-on:click.alt="toggleModal">Open Modal(alt)</button>
+  <button v-on:click="toggleModalTwo">Open ModalTwo</button>
 </template>
 
 <script>
@@ -20,14 +27,12 @@ import Modal from './components/Modal'
 export default {
   name: 'App',
   components: {
-    Modal
+    Modal,
   },
   data(){
     return {
-      title:"Hello",
-      header:"Sign up for the Giveway",
-      text:"Grab your ninja swag for half price",
-      showModal:false
+      showModal:false,
+      showModalTwo:false
     }
   },
   methods:{
@@ -38,6 +43,9 @@ export default {
     },
     toggleModal(){
       this.showModal = !this.showModal
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
